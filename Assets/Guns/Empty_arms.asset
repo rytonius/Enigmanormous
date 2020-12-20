@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac32c7e5b64a6f4888d078e8a38b826, type: 3}
+  m_Name: Empty_arms
+  m_EditorClassIdentifier: 
+  gunName: Arms
+  firerate: 4
+  bloom: 2
+  recoil: 1
+  kickback: 1
+  damage: 100
+  range: 20
+  aimSpeed: 10
+  reloadTime: 2
+  ammoMax: 999
+  clipSize: 1
+  Automatic: 1
+  RightClickAim: 0
+  sniper: 0
+  DualWielded: 0
+  Kinetic: 1
+  fireGunSound: {fileID: 8300000, guid: f1e93291cc7486941b6aed3b354c140a, type: 3}
+  pitchRandomization: 0.05
+  emptyGunSound: {fileID: 8300000, guid: d98902a210aaf8443aacce2ad361082c, type: 3}
+  reloadGunSound: {fileID: 8300000, guid: d66b6a3d32aad0e4ca9bd20e0893ce05, type: 3}
+  prefab: {fileID: 6077281417312441518, guid: 79b4380240814f349ab19d7bafa240a8, type: 3}

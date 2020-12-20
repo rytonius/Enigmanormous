@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac32c7e5b64a6f4888d078e8a38b826, type: 3}
+  m_Name: Pistol_x2
+  m_EditorClassIdentifier: 
+  gunName: Dual Pistols
+  firerate: 0.33
+  bloom: 6
+  recoil: 2
+  kickback: 0.6
+  damage: 12
+  range: 666
+  aimSpeed: 10
+  reloadTime: 1.5
+  ammoMax: 42
+  clipSize: 14
+  Automatic: 0
+  RightClickAim: 1
+  sniper: 0
+  DualWielded: 0
+  Kinetic: 1
+  fireGunSound: {fileID: 8300000, guid: bb1e03f5105692342b2d786ad817ed5a, type: 3}
+  pitchRandomization: 0.06
+  emptyGunSound: {fileID: 8300000, guid: 5765db62e0275be40955c3e0b3f17802, type: 3}
+  reloadGunSound: {fileID: 8300000, guid: be4234fb967e4bf44a18ff6a56e6bb6e, type: 3}
+  prefab: {fileID: 3475215317739737628, guid: e96b9b6dceabb3f408a7a47e6a01019d, type: 3}

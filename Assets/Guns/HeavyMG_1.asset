@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac32c7e5b64a6f4888d078e8a38b826, type: 3}
+  m_Name: HeavyMG_1
+  m_EditorClassIdentifier: 
+  gunName: Heavy Machine Gun
+  firerate: 0.45
+  bloom: 33
+  recoil: 1
+  kickback: 0.3
+  damage: 20
+  range: 1000
+  aimSpeed: 10
+  reloadTime: 2.8
+  ammoMax: 60
+  clipSize: 20
+  Automatic: 1
+  RightClickAim: 1
+  sniper: 0
+  DualWielded: 0
+  Kinetic: 1
+  fireGunSound: {fileID: 8300000, guid: 6cd5aa20c218e6741bcc691129c67bde, type: 3}
+  pitchRandomization: 0.1
+  emptyGunSound: {fileID: 8300000, guid: f1e93291cc7486941b6aed3b354c140a, type: 3}
+  reloadGunSound: {fileID: 8300000, guid: 8a4b2255b6743824ab726c0b5b95ce25, type: 3}
+  prefab: {fileID: 256252101180915948, guid: 8a49ce1636da9b94e9cf9768c3de9e3b, type: 3}

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac32c7e5b64a6f4888d078e8a38b826, type: 3}
+  m_Name: SniperRifle
+  m_EditorClassIdentifier: 
+  gunName: SnipeRifle
+  firerate: 3.4
+  bloom: 1
+  recoil: 1
+  kickback: 0.5
+  damage: 75
+  range: 1100
+  aimSpeed: 8
+  reloadTime: 4
+  ammoMax: 12
+  clipSize: 4
+  Automatic: 0
+  RightClickAim: 1
+  sniper: 1
+  DualWielded: 0
+  Kinetic: 1
+  fireGunSound: {fileID: 8300000, guid: 2e7dbb9bb13b5d64bb163c0a762a86cf, type: 3}
+  pitchRandomization: 0.1
+  emptyGunSound: {fileID: 8300000, guid: 8a62fdb68fc6ff94f8d9998a98d7a6b3, type: 3}
+  reloadGunSound: {fileID: 8300000, guid: fa1677a52a6e369448762db1cd1e84e5, type: 3}
+  prefab: {fileID: 3232362014415755768, guid: b6059ca3e6c649543b709f2831c9eeed, type: 3}

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac32c7e5b64a6f4888d078e8a38b826, type: 3}
+  m_Name: Shotgun_1
+  m_EditorClassIdentifier: 
+  gunName: Shotgun
+  firerate: 1.2
+  bloom: 10
+  recoil: 3
+  kickback: 0.8
+  damage: 45
+  range: 400
+  aimSpeed: 10
+  reloadTime: 2
+  ammoMax: 18
+  clipSize: 6
+  Automatic: 0
+  RightClickAim: 1
+  sniper: 0
+  DualWielded: 0
+  Kinetic: 1
+  fireGunSound: {fileID: 8300000, guid: d154163153e66ad42a0f11f3637090fd, type: 3}
+  pitchRandomization: 0.05
+  emptyGunSound: {fileID: 8300000, guid: 8a62fdb68fc6ff94f8d9998a98d7a6b3, type: 3}
+  reloadGunSound: {fileID: 8300000, guid: f1e93291cc7486941b6aed3b354c140a, type: 3}
+  prefab: {fileID: 5791653531448756599, guid: dddd4931f3b0a8543ac41eac678240e7, type: 3}
