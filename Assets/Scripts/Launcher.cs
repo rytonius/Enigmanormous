@@ -14,12 +14,14 @@ namespace Com.Enigmanormous
     {
         
         public bool stopLoadingText;
-        bool _canpick = false;
+        //bool _canpick = false;
         private PickLevel pickLevel;
+        public GameObject buttonsAnchor;
         public void Awake()
         {
 
             pickLevel = GameObject.Find("PickLevel").GetComponent<PickLevel>();
+            
             Debug.Log("Awake() so syncing up scene");
             // syncs everyone up when game loads
             PhotonNetwork.AutomaticallySyncScene = true;
@@ -29,7 +31,9 @@ namespace Com.Enigmanormous
         public override void OnConnectedToMaster()
         {
             Debug.Log("On Connected To Master");
-            Join();
+            buttonsAnchor.SetActive(true);
+            //Join();
+            stopLoadingText = true;
             base.OnConnectedToMaster();
             
         }
@@ -53,7 +57,7 @@ namespace Com.Enigmanormous
         {
             Debug.Log("Trying to Connect....");
             // our game version, i think this will block users who don't know
-            PhotonNetwork.GameVersion = "0.0.1";
+            PhotonNetwork.GameVersion = "0.0.5";
             // call so you can connect to the server
             PhotonNetwork.ConnectUsingSettings();
         }
@@ -76,13 +80,13 @@ namespace Com.Enigmanormous
             if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
             {
                 Debug.Log("detect 1 player so loading");
-                pickLevel.LevelChoose();
-                _canpick = true;
-                stopLoadingText = true;
+                //pickLevel.LevelChoose();
+                //_canpick = true;
+                PhotonNetwork.LoadLevel(1);
 
             }
         }
-
+        /*
         public void Update()
         {
             if (_canpick == true)
@@ -93,7 +97,7 @@ namespace Com.Enigmanormous
                 
             }
             
-        }
+        }*/
     }
 
 }
