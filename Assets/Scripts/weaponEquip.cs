@@ -35,13 +35,18 @@ namespace Com.Enigmanormous
         // Start is called before the first frame update
         void Start()
         {
-            
-            foreach (weaponData a in loadout) a.Initialize();
-            Equip(0);
+            if (this.photonView)
+            {
+                foreach (weaponData a in loadout) a.Initialize();
+                Equip(0);
 
-            int length = loadout.Length;
-            int cList = length;
-            Debug.Log(cList);
+                // this will need to be updated when inventory is figured out
+                int length = loadout.Length;
+                cList = length;
+
+                Debug.Log("current weapon list: " + cList);
+            }
+                        
         }
 
 
@@ -55,10 +60,7 @@ namespace Com.Enigmanormous
             ReloadYourCurrentGun();
             //weapon position elasticity
             currentWeapon.transform.localPosition = Vector3.Lerp(currentWeapon.transform.localPosition, Vector3.zero, Time.deltaTime * 4f);
-            
 
-
-            
         }
 
         #region private void
@@ -201,27 +203,27 @@ namespace Com.Enigmanormous
                 //scroll up
                 if (mouseWheel > 0)
                 {
-                    Debug.Log(mouseWheel);
-                    for(int wIndex = currentIndex; wIndex <= cList; wIndex++)
-                    {
+                   // Debug.Log(mouseWheel);
+                    int wIndex = currentIndex;
+                    //Debug.Log("current weapons index: " + wIndex);
+                   // Debug.Log("clist :" + cList);
+                    if (wIndex >= cList - 1) wIndex = 0; else wIndex++;
+                        photonView.RPC("Equip", RpcTarget.AllBuffered, wIndex);
+                        //Debug.Log("new weapon: " + wIndex);
                     
-                        Debug.Log(wIndex);
-                        if (wIndex < 6 && wIndex >= 0) photonView.RPC("Equip", RpcTarget.AllBuffered, wIndex);
-                    }
-                    
-                    
+             
                 }
                 //scroll down
                 if (mouseWheel < 0)
                 {
-                    Debug.Log(mouseWheel);
+                   // Debug.Log(mouseWheel);
+                    int wIndex = currentIndex;
+                   // Debug.Log("current weapons index: " + wIndex);
+                   // Debug.Log("clist :" + cList);
+                    if (wIndex <= 0) wIndex = cList - 1; else wIndex--;
+                        photonView.RPC("Equip", RpcTarget.AllBuffered, wIndex);
+                       // Debug.Log("new weapon: " + wIndex);
                     
-                    for (int wIndex = currentIndex; wIndex <= cList; wIndex--)
-                    {
-                        Debug.Log(wIndex);
-                        if (wIndex < 6 && wIndex >= 0) photonView.RPC("Equip", RpcTarget.AllBuffered, wIndex);
-                    }
-
 
                 }
             }
@@ -299,6 +301,7 @@ namespace Com.Enigmanormous
                     SpawnBulletTrailer(t_hit.point);
                     GameObject t_newHole = Instantiate(bulletholePrefab, t_hit.point + t_hit.normal * 0.001f, Quaternion.identity) as GameObject;
                     t_newHole.transform.LookAt(t_hit.point + t_hit.normal);
+                    // this should put the decal on the object you hit
                     t_newHole.transform.parent = t_hit.transform;
                     Destroy(t_newHole, 60f);
 
@@ -307,16 +310,18 @@ namespace Com.Enigmanormous
                 //shooting other players
                 if (photonView.IsMine)
                 {
-                    if (t_hit.collider.gameObject.layer == 26)
+                    if (t_hit.collider.gameObject.layer == 26) // layer 26 is other players
                     {
                         SpawnBulletTrailer(t_hit.point);
                         //Instantiate(bloodbulletholePrefab, t_hit.point + t_hit.normal * 0.001f, Quaternion.identity);
                         GameObject t_newHole = Instantiate(bloodbulletholePrefab, t_hit.point + t_hit.normal * 0.001f, Quaternion.identity) as GameObject;
                         t_newHole.transform.LookAt(t_hit.point + t_hit.normal);
+                        // this should put the decal on the object you hit
+                        t_newHole.transform.parent = t_hit.transform;
                         Destroy(t_newHole, 5f);
 
                         //RPC cull to damage player goes here
-                        t_hit.collider.gameObject.GetPhotonView().RPC("TakeDamage", RpcTarget.All, loadout[currentIndex].damage);
+                        t_hit.collider.transform.root.gameObject.GetPhotonView().RPC("TakeDamage", RpcTarget.All, loadout[currentIndex].damage);
                     }
                 }
                 //

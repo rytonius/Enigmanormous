@@ -175,8 +175,9 @@ namespace Com.Enigmanormous
 
             if (!photonView.IsMine)
             {
-
                 gameObject.layer = 26;
+                standingCollider.layer = 26;
+                crouchingCollider.layer = 26;
             }
 
             if (photonView.IsMine)
