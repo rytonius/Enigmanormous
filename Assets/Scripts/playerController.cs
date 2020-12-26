@@ -11,7 +11,7 @@ using UnityEngine.UI;
 namespace Com.Enigmanormous
 {
 
-    public class playerController : MonoBehaviourPunCallbacks
+    public class playerController : MonoBehaviourPunCallbacks, IPunObservable //!
     {
         #region Variables
 
@@ -148,6 +148,7 @@ namespace Com.Enigmanormous
         [Header("Ammo system")]
         public int stashAmmoBullets = 90;
         public int stashSniperBullets = 15;
+        private float aimAngle;
 
 
 
@@ -214,7 +215,14 @@ namespace Com.Enigmanormous
 
         private void Update()
         {
-            if (!photonView.IsMine) return;
+
+            if (!photonView.IsMine)
+            {
+                RefreshMultiplayerState();
+                return;
+            }
+                
+        
             if (cursorLocked)
             {
                 MyInput();
@@ -561,8 +569,33 @@ namespace Com.Enigmanormous
                 weaponParentCurrentPOS -= Vector3.down * crouchAmount;
             }
         }
+        #endregion
 
+        #region Photon Callbacks
+        public void OnPhotonSerializeView(PhotonStream p_stream, PhotonMessageInfo p_message)
+        {
+            if (p_stream.IsWriting)
+            {
+                p_stream.SendNext((int)(weaponArm.transform.localEulerAngles.x * 100f));
+            }
+            else
+            {
+                aimAngle = (int)p_stream.ReceiveNext() * 0.001f;
+            }
+        }
 
+        void RefreshMultiplayerState()
+        {
+            float cacheEulY = weaponArm.localEulerAngles.y;
+
+            Quaternion targetRotation = Quaternion.identity * Quaternion.AngleAxis(aimAngle, Vector3.right);
+            weaponArm.rotation = Quaternion.Slerp(weaponArm.rotation, targetRotation, Time.deltaTime * 8f);
+
+            Vector3 finalRotation = weaponArm.localEulerAngles;
+            finalRotation.y = cacheEulY;
+
+            weaponArm.localEulerAngles = finalRotation;
+        }
     }
 
 
