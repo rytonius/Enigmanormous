@@ -15,16 +15,17 @@ namespace Com.Enigmanormous
         
         public bool stopLoadingText;
         //bool _canpick = false;
-        private PickLevel pickLevel;
+        //private PickLevel pickLevel;
         public GameObject buttonsAnchor;
         public void Awake()
         {
 
-            pickLevel = GameObject.Find("PickLevel").GetComponent<PickLevel>();
+            //pickLevel = GameObject.Find("PickLevel").GetComponent<PickLevel>();
             
             Debug.Log("Awake() so syncing up scene");
             // syncs everyone up when game loads
             PhotonNetwork.AutomaticallySyncScene = true;
+            
             Connect();
         }
 

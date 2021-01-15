@@ -53,7 +53,7 @@ namespace Com.Enigmanormous
         // Update is called once per frame
         void Update()
         {
-            
+            if (Pause.paused && photonView.IsMine) return; //!
             //equip that weapon
             selectEquipControls();
             FireGunBro();

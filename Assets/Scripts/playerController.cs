@@ -88,7 +88,7 @@ namespace Com.Enigmanormous
         public GameObject standingCollider;
         public GameObject crouchingCollider;
         
-        private static bool cursorLocked = true; //this is for escape menu, hit escape to access
+        //private static bool cursorLocked = true; //this is for escape menu, hit escape to access
 
         private Slider ui_healthbar;
         private Image Ui_healthbarcolor;
@@ -134,6 +134,8 @@ namespace Com.Enigmanormous
         private bool isSprinting = false;
         private bool isCurrentlyAiming = false;
         private bool isCurrentlySniping = false;
+        private bool pause;
+        
         float xMove;
         float zMove;
 
@@ -182,6 +184,9 @@ namespace Com.Enigmanormous
 
             if (photonView.IsMine)
             {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                
                 currentHealth = maxHealthPoints;
                 ui_healthbar = GameObject.Find("HUD/Health/HealthBar").GetComponent<Slider>();
                 Ui_healthbarcolor = GameObject.Find("HUD/Health/HealthBar/fill").GetComponent<Image>();
@@ -216,15 +221,17 @@ namespace Com.Enigmanormous
 
         private void Update()
         {
+            
 
             if (!photonView.IsMine)
             {
                 RefreshMultiplayerState();
                 return;
             }
-                
+              
+            
         
-            if (cursorLocked)
+            if (!Pause.paused)
             {
                 MyInput();
                 SetY();
@@ -234,7 +241,7 @@ namespace Com.Enigmanormous
 
             //if (Input.GetKeyDown(KeyCode.F)) Flashlight.Switch();
             KillYourself();
-            UpdateCusorLock();
+            //UpdateCusorLock();
             RefreshHealthBar();
             weaponEquip.RefreshAmmo(ui_ammotxt);
             weaponEquip.RefreshClip(ui_cliptxt);
@@ -257,7 +264,7 @@ namespace Com.Enigmanormous
             //this part is to get input if your holding shift so you can sprint  || means OR so left OR right Shift
             sprint = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
             crouch = Input.GetKeyDown(KeyCode.C);
-
+            pause = Input.GetKeyDown(KeyCode.Escape); //! pause the game mothertrucker
             // Jump bitch
             jump = Input.GetKey(KeyCode.Space);
             /*
@@ -265,6 +272,8 @@ namespace Com.Enigmanormous
              */
 
         }
+
+
 
         private void Movement()
         {
@@ -280,7 +289,7 @@ namespace Com.Enigmanormous
             bool isSprinting = sprint && zMove > 0 && !isJumping && isGrounded && !isCurrentlyAiming;
             bool isCrouching = crouch && !isSprinting && !isJumping && isGrounded;
             bool isSliding = isSprinting && crouch && !sliding;
-
+            
             
 
             //if your moving then this will like, apply that to a variable which direction your moving.  
@@ -384,6 +393,21 @@ namespace Com.Enigmanormous
                 } else { cams.transform.localPosition = Vector3.Lerp(cams.transform.localPosition, origin, Time.deltaTime * 6f); }
             }
 
+            if (pause)
+            {
+                GameObject.Find("Pause").GetComponent<Pause>().TogglePause();
+            }
+
+            if (Pause.paused)
+            {
+                xMove = 0f;
+                zMove = 0f;
+                sprint = false;
+                jump = false;
+                crouch = false;
+                pause = false;
+                
+            }
             
         }
 
@@ -416,6 +440,7 @@ namespace Com.Enigmanormous
         }
 
         //this shit is for locking the cursor when you hit escape (so when i make the escape menu motherfucker)
+        /*
         void UpdateCusorLock()
         {
             if (cursorLocked)
@@ -442,7 +467,7 @@ namespace Com.Enigmanormous
             }
 
         }
-
+        */
 
         // head bobbing code
 
