@@ -58,7 +58,7 @@ namespace Com.Enigmanormous
         {
             Debug.Log("Trying to Connect....");
             // our game version, i think this will block users who don't know
-            PhotonNetwork.GameVersion = "0.0.5";
+            PhotonNetwork.GameVersion = "0.0.6";
             // call so you can connect to the server
             PhotonNetwork.ConnectUsingSettings();
         }

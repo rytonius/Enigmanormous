@@ -96,7 +96,7 @@ namespace Com.Enigmanormous
         private TextMeshProUGUI ui_ammotxt;
         private TextMeshProUGUI ui_cliptxt;
 
-        // can't remmber what this does... OH it's the center of your camera, the second private Camera normCam is just to grab the camera for FOV shit
+        // can't remmber what this does... OH it's the center of your camera, the second private Camera normCam is just to grab the camera for FOV
         private Quaternion camCenter;
 
 
